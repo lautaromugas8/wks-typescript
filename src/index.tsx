@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
-interface AppProps {
-  title: string;
-}
-
-const App = (props: AppProps): JSX.Element => {
-  const { title } = props;
-  const [counter, setCounter] = useState(0);
-
-  return (
-    <div>
-      <h3>Henry Workshop - {title}</h3>
-      <hr />
-      <button onClick={() => setCounter(counter + 1)}>Increment</button>
-      <button onClick={() => setCounter(counter - 1)}>Decrenent</button>
-      <br />
-      <span>{counter}</span>
-    </div>
-  );
-};
-
-ReactDOM.render(<App title="TypeScript" />, document.querySelector("#root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
